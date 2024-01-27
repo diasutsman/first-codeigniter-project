@@ -6,12 +6,15 @@ class News extends CI_Controller
         parent::__construct();
         $this->load->model('news_model');
         $this->load->helper('url_helper');
+        $this->load->library('session');
     }
 
     public function index()
     {
         $data['news'] = $this->news_model->get_news();
         $data['title'] = 'News FUCKING Archive';
+        $data['message'] = $this->session->flashdata('message');
+        $data['success'] = $this->session->flashdata('success');
 
         $this->load->view('templates/header', $data);
         $this->load->view('news/index', $data);
@@ -37,6 +40,7 @@ class News extends CI_Controller
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
+        $this->load->helper('url');
 
         $data['title'] = 'Create a news item';
 
@@ -49,7 +53,9 @@ class News extends CI_Controller
             $this->load->view('templates/footer', $data);
         } else {
             $this->news_model->set_news();
-            $this->load->view('news/success');
+            $this->session->set_flashdata('message', 'Successfully adding news!');
+            $this->session->set_flashdata('success', true);
+            redirect('news');
         }
     }
 }
