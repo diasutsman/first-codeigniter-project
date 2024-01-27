@@ -52,6 +52,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // $route['default_controller'] = 'welcome';
 // $route['404_override'] = '';
 // $route['translate_uri_dashes'] = FALSE;
+
+$route['news/(:any)'] = 'news/view/$1';
+$route['news'] = 'news/index';
 $route['default_controller'] = 'pages/view';
-//?  the second rule in the $route array matches any request using the wildcard string (:any)   
+//?  the second rule in the $route array matches any request using the wildcard string (:any)
 $route['(:any)'] = 'pages/view/$1';
