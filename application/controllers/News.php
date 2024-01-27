@@ -12,7 +12,7 @@ class News extends CI_Controller
     public function index()
     {
         $data['news'] = $this->news_model->get_news();
-        $data['title'] = 'News FUCKING Archive';
+        $data['title'] = 'News  Archive';
         $data['message'] = $this->session->flashdata('message');
         $data['success'] = $this->session->flashdata('success');
 
